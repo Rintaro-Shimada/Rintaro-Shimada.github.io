@@ -1,7 +1,7 @@
 ---
-title: Documentation
+title: Download
 narrow: true
-permalink: list/projects.html
+permalink: list/download.html
 show_profile: true
 ---
 
