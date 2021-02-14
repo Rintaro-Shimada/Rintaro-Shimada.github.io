@@ -1,0 +1,26 @@
+I"6<h2 id="goland-で-go-mod-を使うときの注意">Goland で go mod を使うときの注意</h2>
+<p>最近 golang で開発を始めたのですが、github のプライベートリポジトリで管理されているパッケージをgo mod とセットで使おうとしたところ
+エラーが出てしましました。</p>
+
+<figure class="highlight"><pre><code class="language-log" data-lang="log">--------github のURL------- 410 Gone</code></pre></figure>
+
+<p>みたいな感じで 410 というエラーが出ました。<br />
+まず確認したのは、 Go env の設定です。</p>
+
+<figure class="highlight"><pre><code class="language-log" data-lang="log">GO111MODULE="on"
+GOPROXY="direct"
+GOSUMDB="off"</code></pre></figure>
+
+<p>この三つののパラメーを確認したのですが、もちろん上記のようになっていて問題はなし、なので原因を探していたら
+意図していない動作があるのがわかりました。package のインポートする際のダウンロード元にアクセスできない、プロキシの設定が無効になっているようでした。
+けど、設定はしているのにおかしいと思っていたら、 GoLand は自陣のプロジェクトごとに環境設定を持っていて、その設定を読み込んでいたのです。</p>
+
+<div class="card mb-3">
+    <img class="card-img-top" src="/upload_files/images/goland_env_seting.png" />
+    <div class="card-body bg-light">
+        <div class="card-text">
+            The Peak District on a mosty morning.
+        </div>
+    </div>
+</div>
+:ET
