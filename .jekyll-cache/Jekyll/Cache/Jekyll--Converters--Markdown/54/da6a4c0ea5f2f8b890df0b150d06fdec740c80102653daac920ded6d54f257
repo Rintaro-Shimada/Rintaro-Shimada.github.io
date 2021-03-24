@@ -1,0 +1,29 @@
+I"�<h1 id="複数デプロイキーが必要になる環境">複数デプロイキーが必要になる環境</h1>
+<p>今までは、サーバーにつき一つのリポジトリしかなくバッティングしませんでした。ですが、同じ pub key を登録しようとすると<br />
+<code class="language-plaintext highlighter-rouge">その鍵は使われている</code>という警告が出て登録できません。
+解決方法は簡単で必要のリポジトリ分の鍵を生成してそれを使うのですが、普通にやっても使えませんでした。</p>
+
+<ol>
+  <li>.ssh/ 内でキーを生成 秘密鍵の名前を　config ファイルに記述します。
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host 
+  HostName github.com
+  IdentityFile ~/.ssh/
+  User git
+  TCPKeepAlive <span class="nb">yes
+  </span>IdentitiesOnly <span class="nb">yes</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>公開鍵を Git hub の設定ページでデプロイキーをセット</p>
+  </li>
+  <li>サーバー側でコマンドを実行
+git clone
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@:narikei/.git
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>git pull</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git pull git@:narikei/.git
+</code></pre></div></div>
+:ET
